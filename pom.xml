@@ -30,9 +30,9 @@
 		<maven-paxexam-plugin.version>1.2.4</maven-paxexam-plugin.version>
 
 		<!-- Dependency versions -->
-		<cdi-support.version>1.0.0-SNAPSHOT</cdi-support.version>
-		<osgi-support.version>1.0.0-SNAPSHOT</osgi-support.version>
-		<sisu-test-support.version>1.0.0-SNAPSHOT</sisu-test-support.version>
+		<test-support-cdi.version>1.0.0-SNAPSHOT</test-support-cdi.version>
+		<test-support-osgi.version>1.0.0-SNAPSHOT</test-support-osgi.version>
+		<test-support-sisu.version>1.0.0-SNAPSHOT</test-support-sisu.version>
 	</properties>
 
 	<dependencyManagement>
@@ -41,20 +41,20 @@
 			<dependency>
 				<scope>test</scope>
 				<groupId>ch.sourcepond.testing</groupId>
-				<artifactId>cdi-support</artifactId>
-				<version>${cdi-support.version}</version>
+				<artifactId>test-support-cdi</artifactId>
+				<version>${test-support-cdi.version}</version>
 			</dependency>
 			<dependency>
 				<scope>test</scope>
 				<groupId>ch.sourcepond.testing</groupId>
-				<artifactId>osgi-support</artifactId>
-				<version>${osgi-support.version}</version>
+				<artifactId>test-support-osgi</artifactId>
+				<version>${test-support-osgi.version}</version>
 			</dependency>
 			<dependency>
 				<scope>test</scope>
 				<groupId>ch.sourcepond.testing</groupId>
-				<artifactId>sisu-test-support</artifactId>
-				<version>${sisu-test-support.version}</version>
+				<artifactId>test-support-sisu</artifactId>
+				<version>${test-support-sisu.version}</version>
 			</dependency>
 		</dependencies>
 	</dependencyManagement>
