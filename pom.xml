@@ -1,0 +1,112 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+	<!-- Licensed to the Apache Software Foundation (ASF) under one or more 
+		contributor license agreements. See the NOTICE file distributed with this 
+		work for additional information regarding copyright ownership. The ASF licenses 
+		this file to You under the Apache License, Version 2.0 (the "License"); you 
+		may not use this file except in compliance with the License. You may obtain 
+		a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 Unless 
+		required by applicable law or agreed to in writing, software distributed 
+		under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES 
+		OR CONDITIONS OF ANY KIND, either express or implied. See the License for 
+		the specific language governing permissions and limitations under the License. -->
+	<parent>
+		<groupId>ch.sourcepond</groupId>
+		<artifactId>build</artifactId>
+		<version>1.0.0-SNAPSHOT</version>
+	</parent>
+	<modelVersion>4.0.0</modelVersion>
+	<artifactId>module</artifactId>
+	<packaging>pom</packaging>
+	<name>Base POM for OSGi integration tests</name>
+	<inceptionYear>2015</inceptionYear>
+	<description>
+		This is the parent POM for the OSGi integration tests of the bundles published by SourcePond.
+	</description>
+
+	<properties>
+		<!-- Plugin versions -->
+		<maven-paxexam-plugin.version>1.2.4</maven-paxexam-plugin.version>
+
+		<!-- Dependency versions -->
+		<cdi-support.version>1.0.0-SNAPSHOT</cdi-support.version>
+		<osgi-support.version>1.0.0-SNAPSHOT</osgi-support.version>
+		<sisu-test-support.version>1.0.0-SNAPSHOT</sisu-test-support.version>
+	</properties>
+
+	<dependencyManagement>
+		<dependencies>
+			<!-- Testing -->
+			<dependency>
+				<scope>test</scope>
+				<groupId>ch.sourcepond.testing</groupId>
+				<artifactId>cdi-support</artifactId>
+				<version>${cdi-support.version}</version>
+			</dependency>
+			<dependency>
+				<scope>test</scope>
+				<groupId>ch.sourcepond.testing</groupId>
+				<artifactId>osgi-support</artifactId>
+				<version>${osgi-support.version}</version>
+			</dependency>
+			<dependency>
+				<scope>test</scope>
+				<groupId>ch.sourcepond.testing</groupId>
+				<artifactId>sisu-test-support</artifactId>
+				<version>${sisu-test-support.version}</version>
+			</dependency>
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<pluginManagement>
+			<plugins>
+				<plugin>
+					<groupId>org.ops4j.pax.exam</groupId>
+					<artifactId>maven-paxexam-plugin</artifactId>
+					<version>${maven-paxexam-plugin.version}</version>
+					<executions>
+						<execution>
+							<id>generate-config</id>
+							<goals>
+								<goal>generate-depends-file</goal>
+							</goals>
+						</execution>
+					</executions>
+				</plugin>
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>org.ops4j.pax.exam</groupId>
+										<artifactId>maven-paxexam-plugin</artifactId>
+										<versionRange>[1.0.0,)</versionRange>
+										<goals>
+											<goal>generate-depends-file</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<ignore />
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
+			</plugins>
+		</pluginManagement>
+
+		<plugins>
+			<plugin>
+				<groupId>org.ops4j.pax.exam</groupId>
+				<artifactId>maven-paxexam-plugin</artifactId>
+			</plugin>
+		</plugins>
+	</build>
+</project>
